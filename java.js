@@ -21,10 +21,29 @@ function operate(operator, num1, num2) {
     else if (operator == "-") {
         return subtract(num1, num2);
     }
-    else if (operator == "*") {
+    else if (operator == "x") {
         return multiply(num1, num2);
     }
     else {
         return divide(num1, num2)
     }
 }
+
+document.addEventListener("DOMContentLoaded", function(e) {
+let buttons = document.querySelectorAll("button");
+let display = document.querySelector(".display");
+
+    buttons.forEach(button => {
+        button.addEventListener("click", (e) => {
+            let num = document.createElement("p");
+            num.textContent = e.target.innerText;
+
+            if (num.textContent == "+" || num.textContent == "-" ||
+                num.textContent == "x" || num.textContent == "÷" ) {
+                operate(num.textContent)
+            }
+
+            display.appendChild(num);
+        });
+    });
+});
